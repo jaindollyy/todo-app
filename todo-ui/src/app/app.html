@@ -1,0 +1,27 @@
+<main class="card">
+  <header class="header">
+    <h1>TODO List</h1>
+    @if (!store.loading()) {
+      <span class="count">{{ store.count() }} {{ store.count() === 1 ? 'item' : 'items' }}</span>
+    }
+  </header>
+
+  <app-todo-form [busy]="store.saving()" (submitted)="onAdd($event)" />
+
+  @if (store.error(); as error) {
+    <div class="alert" role="alert">
+      <span>{{ error }}</span>
+      <button type="button" class="retry" (click)="onRetry()">Retry</button>
+    </div>
+  }
+
+  @if (store.loading()) {
+    <p class="status" aria-live="polite">Loading…</p>
+  } @else {
+    <app-todo-list
+      [todos]="store.todos()"
+      [deletingIds]="store.deletingIds()"
+      (deleted)="onDelete($event)"
+    />
+  }
+</main>

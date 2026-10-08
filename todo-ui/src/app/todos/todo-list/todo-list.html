@@ -1,0 +1,20 @@
+@if (todos().length) {
+  <ul class="todo-list">
+    @for (todo of todos(); track todo.id) {
+      <li class="todo-item">
+        <span class="todo-title">{{ todo.title }}</span>
+        <button
+          type="button"
+          class="delete"
+          [disabled]="deletingIds().has(todo.id)"
+          [attr.aria-label]="'Delete ' + todo.title"
+          (click)="deleted.emit(todo.id)"
+        >
+          Delete
+        </button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p class="empty">Nothing to do yet. Add your first item above.</p>
+}
