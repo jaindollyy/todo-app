@@ -1,3 +1,16 @@
+## How this was built
+
+Built with AI in couple of hours. I designed the system; the AI wrote the code.
+
+- **Spec first.** I wrote a short spec covering the features, API contract, validation rules
+  and folder structure before generating anything, and kept the AI working to it.
+- **Architecture was mine.** Repository abstraction, minimal APIs with TypedResults,
+  signal store with a container/presentational split. See *Design decisions* below.
+- **Reviewed, not accepted blindly.** tightened validation so whitespace-only titles are rejected on both sides.
+- **Tests as the safety net.** xUnit integration tests (WebApplicationFactory) and Vitest
+  component tests, run in CI on every push, so AI-generated changes can't silently
+  break behaviour.
+
 # TODO List — Angular + .NET
 
 A small full-stack TODO app. Users can **view**, **add** and **delete** items.
